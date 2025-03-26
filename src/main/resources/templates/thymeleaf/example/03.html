@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring boot</title>
+</head>
+<body>
+    <h3>thymeleaf for</h3>
+    <p th:each="one : ${names}">
+        <span th:text="${one}"></span>
+    </p>
+    <hr/>
+    <ul>
+        <li th:each="one : ${names}" th:text="${one}"></li>
+    </ul>
+
+
+</body>
+</html>
