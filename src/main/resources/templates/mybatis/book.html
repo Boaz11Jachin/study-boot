@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:each="one : ${books}"
+     style="padding: 4px; box-shadow: 0px 4px 10px rgba(0,0,0,0.2); margin-bottom: 100px;">
+    <h3 th:text="${one.title}"></h3>
+    <p style="font-size: small">
+        <span th:text="${one.author}"></span>
+        |
+        <span th:text="${one.publisher}"></span>
+        |
+        <span th:text="${one.publishedAt}"></span>
+    </p>
+</div>
+</body>
+</html>

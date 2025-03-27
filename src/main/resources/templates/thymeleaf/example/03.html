@@ -11,8 +11,9 @@
     </p>
     <hr/>
     <ul>
-        <li th:each="one : ${names}" th:text="${one}"></li>
+        <li th:each="one : ${names}" th:text="${one + ' ' + one}"></li>
     </ul>
+
 
 
 </body>

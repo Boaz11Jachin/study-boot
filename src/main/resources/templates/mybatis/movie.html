@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>무비리스트</title>
+</head>
+<body>
+<h2>영화 정보 목록</h2>
+<div th:each="one : ${movies}"
+     style="padding: 4px; box-shadow: 0 2px 3px rgba(0,0,0,0.2); margin-bottom: 10px;">
+    <h3 th:text="${one.title}"></h3>
+    <p style="font-size: small">
+        <span th:text="${one.genre}"></span>
+        |
+        <span th:text="${one.releaseDate}"></span>
+    </p>
+</div>
+</body>
+</html>
