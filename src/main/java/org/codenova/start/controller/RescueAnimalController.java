@@ -1,5 +1,6 @@
 package org.codenova.start.controller;
 
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.codenova.start.model.animal.AbandonmentJSON;
@@ -17,20 +18,18 @@ public class RescueAnimalController {
 
     @GetMapping("/all")
     public String allHandle(Model model) throws JsonProcessingException {
-
         RestTemplate restTemplate = new RestTemplate();
 
         ResponseEntity<String> response = restTemplate.exchange(
-                "http://apis.data.go.kr/1543061/abandonmentPublicService_v2/abandonmentPublic_v2?ServiceKey=Vw25fQSAsfNycj/AXwgHlM66HYmyfKPkX8pSs7dRqhRB1CqtZvhH0mUoAjue6h3CmrUQTjIBD3mHhflG7pedpA==&_type=json&numOfRows=20&upkind=417000",
+                "http://apis.data.go.kr/1543061/abandonmentPublicService_v2/abandonmentPublic_v2?ServiceKey=Vw25fQSAsfNycj/AXwgHlM66HYmyfKPkX8pSs7dRqhRB1CqtZvhH0mUoAjue6h3CmrUQTjIBD3mHhflG7pedpA==&_type=json&numOfRows=20",
                 HttpMethod.GET,
-                null,  // 그 외 설정할 헤더 값
+                null,   // 그외 설정할 헤더값
                 String.class
         );
 
-
-        //System.out.println(response.getBody());
+        String raw =response.getBody();
         ObjectMapper objectMapper = new ObjectMapper();
-        AbandonmentJSON abandonmentJSON = objectMapper.readValue(response.getBody(), AbandonmentJSON.class);
+        AbandonmentJSON abandonmentJSON =objectMapper.readValue(raw, AbandonmentJSON.class);
 
         int n = abandonmentJSON.getResponse().getHeader().getReqNo();
         System.out.println(n);
@@ -41,4 +40,5 @@ public class RescueAnimalController {
         model.addAttribute("body", abandonmentJSON.getResponse().getBody());
         return "rescue-animal/all";
     }
+
 }
