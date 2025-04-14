@@ -9,4 +9,5 @@ import java.util.List;
 public interface CommentRepository {
     public int create(Comment comment);
     public List<Comment> findByIsoCode(String isoCode);
+    public int countByIsoCode(String isoCode);
 }

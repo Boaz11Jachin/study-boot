@@ -57,6 +57,8 @@ public class TravelController {
 
         model.addAttribute("data", warning);
 
+        model.addAttribute("count", commentRepository.countByIsoCode(isoCode));
+
         List<Comment> comments = commentRepository.findByIsoCode(isoCode);
         model.addAttribute("comments", comments);
 
@@ -64,12 +66,12 @@ public class TravelController {
         return "travel/warning/detail";
     }
 
-    @GetMapping("/warning/comments")
-    public String commentsHandle(Model model, @ModelAttribute Comment comment, @RequestParam("isoCode") String isoCode){
+    @PostMapping("/warning/comments")
+    public String commentsHandle(@ModelAttribute Comment comment){
 
         commentRepository.create(comment);
 
-        return "redirect:/travel/warning/detail?isoCode="+isoCode;
+        return "redirect:/travel/warning/detail?isoCode="+comment.getIsoCode();
     }
 
 

@@ -6,7 +6,7 @@
 </head>
 <body style="margin: 0">
 <div style="display: flex; height: 100vh;">
-    <div style="padding: 10px">
+    <div style="padding: 10px; width: 65%">
         <div style="display: flex; height: 40px; align-items: center; border-bottom : 1px solid rgba(0,0,0, 0.3)">
             <img th:src="${data.imgUrl}" style="height: 70%; margin-right: 10px;"/>
             <span th:text="${data.countryName}"></span>
@@ -16,17 +16,19 @@
         </div>
         <div style="padding: 10px">
             <div>
-                <img th:src="${data.imgUrl2}" style="height:90vh; object-fit: cover"/>
+                <img th:src="${data.imgUrl2}" style="width:100%; object-fit: cover"/>
             </div>
         </div>
     </div>
     <div style="flex : 1; padding : 10px">
-        <div style="height: 100px; border: 1px solid rgba(0,0,0,0.3); padding : 10px">
-            주의할 점들 출력할 예정
+        <div style="border: 1px solid #ddd; padding: 15px; background-color: #fff3cd; border-radius: 8px; margin-bottom: 20px;">
+            ⚠️ 주의할 점들 출력할 예정
         </div>
         <div style="margin-top:10px">
-            <h3 style="margin: 3px;">의견남기기(4)</h3>
-            <form th:action="@{/travel/warning/comments}">
+            <h3 style="margin: 3px;">💬 의견남기기
+                (<span th:text="${count}">4</span>)
+            </h3>
+            <form th:action="@{/travel/warning/comments}" method="post">
                 <input type="hidden" name="isoCode" th:value="${data.isoCode}" />
                 <textarea name="body"
                           style="width: 100%; height:70px; resize: none; box-sizing: border-box; padding:4px"></textarea>
@@ -34,10 +36,12 @@
             </form>
         </div>
         <div>
-
-            <p th:each="one : ${comments}" style="border-bottom: 1px solid rgba(0,0,0,0.3); line-height: 1.7;">
-                <span th:text="${one.body}"></span>  <small style="color: gray">4일전</small>
+            <p th:each="one : ${comments}"
+               style="border-bottom: 1px solid rgba(0,0,0,0.3); line-height: 1.7;">
+                <span th:text="${one.body}"></span>
+                <small style="color: gray" th:text="${one.writedAt}"></small>
             </p>
+
         </div>
     </div>
 
